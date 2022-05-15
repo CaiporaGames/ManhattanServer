@@ -2,8 +2,8 @@ const router = require('express').Router();
 const Images = require('../models/Images')
 
 
-//ADD images
-router.post('/',async(req, res)=>{
+//UPLOAD images
+router.route('/uploadImage').post(async(req, res)=>{
     const {name, userID, URL} = req.body;
 
     if(!name || !userID || !URL)
@@ -24,9 +24,9 @@ router.post('/',async(req, res)=>{
     }
 })
 
-//GET image by userID.
-router.get('/:userID', async(req,res)=>{
-    const userID = req.params.userID;
+//DOWNLOAD images
+router.route('/downloadImages').post(async(req,res)=>{
+    const {userID} = req.body;
 
     try{
         const image = await Images.find({userID:userID})
@@ -39,6 +39,7 @@ router.get('/:userID', async(req,res)=>{
     }catch(error)
     {
         res.status(500).json({error:error});
+        console.log(error);
     }
 })
 
