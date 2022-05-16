@@ -1,27 +1,33 @@
 require('dotenv').config();
 const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
+const cors = require('cors');
+const app = express();
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3000;
 DBUSER = process.env.DBUSER;
 DBPASSWORD = process.env.DBPASSWORD;
 
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
+app.use((req, res, next)=>{
+    res.header('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+    next();
+})
 
 
 //API Routes
-const userRoutes = require('./routes/userRoutes')
-app.use('/user',userRoutes)
+const userRoutes = require('./routes/userRoutes');
+app.use('/user',userRoutes);
 
 
-const imageRoutes = require('./routes/imageRoutes')
-app.use('/image',imageRoutes)
+const imageRoutes = require('./routes/imageRoutes');
+app.use('/image',imageRoutes);
 
-const videoRoutes = require('./routes/videoRoutes')
-app.use('/video',videoRoutes)
+const videoRoutes = require('./routes/videoRoutes');
+app.use('/video',videoRoutes);
 
 
 //DB Connection
@@ -33,6 +39,6 @@ mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.diujz.mongodb.n
     });
 })
 .catch(error =>{
-    console.log("DB connection error: "+error)
+    console.log("DB connection error: "+error);
 })
 
