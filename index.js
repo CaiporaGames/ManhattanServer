@@ -24,11 +24,13 @@ app.use('/user',userRoutes);
 
 
 const imageRoutes = require('./routes/imageRoutes');
-app.use('/image',imageRoutes);
+app.use('/image', imageRoutes);
 
 const videoRoutes = require('./routes/videoRoutes');
-app.use('/video',videoRoutes);
+app.use('/video', videoRoutes);
 
+const billboardRoutes = require('./routes/billboardRoutes');
+app.use('/billboard', billboardRoutes)
 
 //DB Connection
 mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.diujz.mongodb.net/ProjectManhattan?retryWrites=true&w=majority`)
