@@ -1,19 +1,25 @@
 const router = require('express').Router();
 const User = require('../models/User')
-
+const validator = require('email-validator')
 
 //Login user
 router.route('/login').post(async(req, res)=>{
-    const {name, password} = req.body;
+    const {email, password} = req.body;
 
-    if(!name || !password)
+    if(!password || !email)
     {
-        res.status(422).json({error:'All fields are required'});
+        res.status(400).json({error:'All fields are required'});
         return;
-    }   
+    } 
+    
+    if(!validator.validate(email))
+    {
+        res.status(400).json({message:'It is not an valid email format'})
+        return
+    }
 
     try{        
-        const user = await User.findOne({name:name, password:password})
+        const user = await User.findOne({email:email, password:password})
 
         res.status(200).json(user);
     }catch(error){
@@ -23,21 +29,21 @@ router.route('/login').post(async(req, res)=>{
 
 //Register User
 router.route('/register').post(async(req, res)=>{
-    const {name, password} = req.body;
+    const {name, email, password} = req.body;
 
-    if(!name || !password)
+    if(!name || !password || !email)
     {
-        res.status(422).json({error:'All fields are required'});
+        res.status(400).json({error:'All fields are required'});
         return;
     }
 
     const user = {
-        name, password
+        name, email, password
     }
 
     try{
         await User.create(user);
-        res.status(201).json({message:"User create successfully"});
+        res.status(201).json({message:"User created successfully"});
     }catch(error){
         res.status(500).json({error:error})
     }

@@ -3,11 +3,11 @@ const Billboards = require('../models/Billboards')
 
 
 //UPLOAD Billboard content
-router.route('/uploadBillboard').post(async(req,res)=>{
+router.route('/uploadBillboards').post(async(req,res)=>{
 
     const {userID, URL, contentType, position, price, rentTime, availableAt, buyedAt} = req.body
 
-    if(!position || !userID || !URL || ! contentType || !price || !availableAt || !buyedAt || !rentTime)
+    if(!position || !userID || !URL || !contentType || !price || !availableAt || !buyedAt || !rentTime)
     {
         res.status(422).json({error:'All fields are required'})
         return;
@@ -33,7 +33,7 @@ router.route('/uploadBillboard').post(async(req,res)=>{
 
 
 //DOWNLOAD Billboard content
-router.route('/downloadBillboard').post(async(req,res)=>{
+router.route('/downloadBillboards').post(async(req,res)=>{
 
     const {position} = req.body
 

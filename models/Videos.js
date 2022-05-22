@@ -3,9 +3,21 @@ const {Schema} = mongoose;
 
 const videoSchema = new Schema (
     {
-        userID:String,
-        name:String,
-        URL:String
+        userID:
+        {
+            type:String
+        },
+        name:
+        {
+            type:String,
+            required:true
+        },
+        URL:
+        {
+            type:String,
+            unique:true,
+            required:true
+        }
     }
 )
 

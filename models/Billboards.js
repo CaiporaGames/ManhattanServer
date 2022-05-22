@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const {Schema} = mongoose
 
+
 const billboardSchema = new Schema(
     {
         userID:{
@@ -12,7 +13,8 @@ const billboardSchema = new Schema(
             required: true,
         },
         contentType:{
-            type: String
+            type: String,
+            required:true
         },
         position:{
             type: String,

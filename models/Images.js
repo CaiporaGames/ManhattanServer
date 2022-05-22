@@ -3,9 +3,21 @@ const {Schema} = mongoose
 
 const imageSchema = new Schema(
     {    
-        userID:String,
-        name:String,
-        URL:String
+        userID:
+        {
+            type:String
+        },
+        name:
+        {
+            type:String,
+            required:true
+        },
+        URL:
+        {
+            type:String,
+            required:true,
+            unique:true
+        }
     }    
 )
 const Images = mongoose.model('Images', imageSchema)

@@ -33,7 +33,8 @@ const billboardRoutes = require('./routes/billboardRoutes');
 app.use('/billboard', billboardRoutes)
 
 //DB Connection
-mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.diujz.mongodb.net/ProjectManhattan?retryWrites=true&w=majority`)
+//mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.diujz.mongodb.net/ProjectManhattan?retryWrites=true&w=majority`)//Mine Link
+mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.ybuiw.mongodb.net/ProjectManhattan?retryWrites=true&w=majority`)//Guilherme Link
 .then(()=>{
     console.log("Connected to the MongoDB");
     app.listen(PORT, ()=>{
@@ -44,3 +45,5 @@ mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.diujz.mongodb.n
     console.log("DB connection error: "+error);
 })
 
+//DBUSER = timoteo
+//DBPASSWORD = H!perk.9000
