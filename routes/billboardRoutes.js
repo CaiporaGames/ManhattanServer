@@ -28,7 +28,7 @@ router.route('/uploadBillboards').post(async(req,res)=>{
             return
         }
         res.status(500).json({error:error})
-    }
+          }
 })
 
 
@@ -57,5 +57,31 @@ router.route('/downloadBillboards').post(async(req,res)=>{
         res.status(500).json({error:error})
     }
 })
+
+
+//UPDATE PATCH
+router.patch('/updateBillboards', async(req, res)=>{
+    const {userID, URL, contentType, position, rentTime, availableAt, buyedAt} = req.body;
+
+    const billboard = {
+        userID, URL, contentType,
+        rentTime, availableAt, buyedAt
+    }
+
+    try{
+        const updatedBillboard = await Billboards.updateOne({position:position}, billboard);
+        if(updatedBillboard.matchedCount === 0)
+        {
+            res.status(500).json({message:"Billboard not found"});
+            return;
+        }
+        res.status(200).json(billboard);
+    }catch(error)
+    {
+        res.status(500).json({error:error});
+        console.log(error)
+    }
+})
+
 
 module.exports = router;

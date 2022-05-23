@@ -29,7 +29,7 @@ const billboardSchema = new Schema(
             type: String
         },
         rentTime :{
-            type:String,
+            type: String,
             required:true
         },
         availableAt: {
