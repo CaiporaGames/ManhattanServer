@@ -5,16 +5,16 @@ const Billboards = require('../models/Billboards')
 //UPLOAD Billboard content
 router.route('/uploadBillboards').post(async(req,res)=>{
 
-    const {userID, URL, contentType, position, price, rentTime, availableAt, buyedAt} = req.body
+    const {userID, URL, contentType, position, price, size, rentTime, availableAt, buyedAt} = req.body
 
-    if(!position || !userID || !URL || !contentType || !price || !availableAt || !buyedAt || !rentTime)
+    if(!position || !userID || !URL || !contentType || !price || !size || !availableAt || !buyedAt || !rentTime)
     {
         res.status(422).json({error:'All fields are required'})
         return;
     }
 
     const billboard = {
-        userID, URL, contentType, position, price, rentTime, availableAt, buyedAt
+        userID, URL, contentType, position, price, size, rentTime, availableAt, buyedAt
     }
 
     try {
