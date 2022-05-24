@@ -20,8 +20,14 @@ router.route('/login').post(async(req, res)=>{
 
     try{        
         const user = await User.findOne({email:email, password:password})
+        if(user == null)
+        {
+            res.status(404).json({message:"User not found! Verify your email or password!"})
+            return
+        }
 
         res.status(200).json(user);
+
     }catch(error){
         res.status(500).json({error:error})
     }

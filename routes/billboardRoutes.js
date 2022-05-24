@@ -59,7 +59,7 @@ router.route('/downloadBillboards').post(async(req,res)=>{
 })
 
 
-//UPDATE PATCH
+//UPDATE Billboard Content
 router.patch('/updateBillboards', async(req, res)=>{
     const {userID, URL, contentType, position, rentTime, availableAt, buyedAt} = req.body;
 
