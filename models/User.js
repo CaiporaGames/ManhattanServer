@@ -18,6 +18,11 @@ const userSchema = new Schema(
         {
             type:String,
             required:true
+        },
+        money:
+        {
+            type:String,
+            required:true
         }
     }
 )

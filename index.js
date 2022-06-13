@@ -32,6 +32,9 @@ app.use('/video', videoRoutes);
 const billboardRoutes = require('./routes/billboardRoutes');
 app.use('/billboard', billboardRoutes)
 
+const NewBillboards = require('./routes/NewBillboardsRoutes');
+app.use('/newBillboard', NewBillboards)
+
 //DB Connection
 //mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.diujz.mongodb.net/ProjectManhattan?retryWrites=true&w=majority`)//Mine Link
 mongoose.connect(`mongodb+srv://${DBUSER}:${DBPASSWORD}@cluster0.ybuiw.mongodb.net/ProjectManhattan?retryWrites=true&w=majority`)//Guilherme Link
