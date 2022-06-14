@@ -8,7 +8,7 @@ router.route('/firstBillboardUpload').post(async(req,res)=>{
     const {position} = req.body
 
     const billboard = {
-        userID : "", URL:"", contentType:"", position, price:"", size:"", rentTime:"", availableAt:"", buyedAt : "", users : []
+        userID : "", URL:"", contentType:"", position, price:"", size:"", rentTime:"", availableAt:"", buyedAt : "", users : [{userID : "", URL:"", rentTime:"", buyedAt:""}]
     }
 
     if(!position)
@@ -38,18 +38,19 @@ router.route('/billboardUpload').post(async(req,res)=>{
     const billboard = {
         userID , URL, contentType, position, price, size, rentTime, availableAt, buyedAt
     }
-
-    const user = {
-        users
-    }
-
+   
+   
+console.log(position)
+//console.log({ users : [{userID , URL, rentTime, buyedAt}]})
+      
     if(!userID || !URL || !contentType || !position || !price || !size || !rentTime || !availableAt || !buyedAt)
     {
         res.status(422).json({error:'All fields are Required!'})
         return;
     }
     try {
-        await NewBillboard.updateOne({position},{$set:{...billboard}, $addToSet: { users:user}})       
+        const bill = await NewBillboard.updateOne({position},{$set:{...billboard}, $addToSet: { users : [{userID , URL, rentTime, buyedAt}]}})       
+        console.log(bill)
         res.status(200).json({message:"Billboard successfully updated!"})
     }
     catch(error)

@@ -29,8 +29,8 @@ app.use('/image', imageRoutes);
 const videoRoutes = require('./routes/videoRoutes');
 app.use('/video', videoRoutes);
 
-const billboardRoutes = require('./routes/billboardRoutes');
-app.use('/billboard', billboardRoutes)
+//const billboardRoutes = require('./routes/billboardRoutes');
+//app.use('/billboard', billboardRoutes)
 
 const NewBillboards = require('./routes/NewBillboardsRoutes');
 app.use('/newBillboard', NewBillboards)
